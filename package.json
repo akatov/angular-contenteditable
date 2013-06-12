@@ -1,0 +1,32 @@
+{
+  "name": "angular-radians",
+  "version": "0.0.0",
+  "description": "angular extensions",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": "",
+  "keywords": [
+    "angular",
+    "extension"
+  ],
+  "author": "Dmitri Akatov",
+  "license": "BSD",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-mocha-cli": "~1.0.6",
+    "should": "~1.2.2",
+    "grunt-coffee-redux": "~0.2.3",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-coffeelint": "0.0.6",
+    "coffee-script": "~1.6.3"
+  }
+}
