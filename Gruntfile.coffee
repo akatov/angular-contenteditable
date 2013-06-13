@@ -15,6 +15,7 @@ module.exports = (grunt) ->
       src: 'src/'
       test: 'test/'
       target: 'dist/'
+    clean: target: src: ['<%= meta.target %>*js']
     coffeelint: src:
       files: src: ['<%= meta.src %>**/*.coffee']
       options: max_line_length: level: 'warn'
@@ -24,13 +25,12 @@ module.exports = (grunt) ->
         '<%= meta.target %>radians.js': [
           '<%= meta.src %>**/*.coffee'
         ]
-    clean: target: src: ['<%= meta.target %>*js']
     mochacli:
       options:
         require: ['should']
         compilers: ['coffee:coffee-script']
         reporter: 'spec'
-      coffee: ['test/*.coffee']
+      test: ['test/*.coffee']
 
     # Task configuration.
     # concat:
@@ -55,15 +55,15 @@ module.exports = (grunt) ->
     #     tasks: ['jshint:lib_test', 'qunit']
 
   # These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-clean')
-  grunt.loadNpmTasks('grunt-contrib-coffee')
-  grunt.loadNpmTasks('grunt-coffeelint')
-  grunt.loadNpmTasks('grunt-contrib-watch')
-  grunt.loadNpmTasks('grunt-mocha-cli')
-  grunt.loadNpmTasks('grunt-contrib-jshint')
+  grunt.loadNpmTasks 'grunt-contrib-clean'
+  grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-coffeelint'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-mocha-cli'
+  grunt.loadNpmTasks 'grunt-contrib-jshint'
 
 
   grunt.registerTask 'test', ['mochacli']
   grunt.registerTask 'lint', ['coffeelint']
-  grunt.registerTask 'build', ['clean', 'lint']
+  grunt.registerTask 'build', ['clean', 'lint', 'coffee']
   grunt.registerTask 'default', ['lint' , 'test', 'build', 'jshint']

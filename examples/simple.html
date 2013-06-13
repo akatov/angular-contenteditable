@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="simple">
+  <head>
+    <title>Simple</title>
+    <script src="../components/angular/angular.js"></script>
+    <script src="../dist/radians.js"></script>
+    <script>
+angular.module('simple', ['radians'])
+.controller('Ctrl', function($scope, $window) {
+  $scope.model = "Initial stuff <b>with bold</b> <em>and italic</em> yay"
+})
+
+angular.bootstrap(document, ['simple'])
+    </script>
+  </head>
+  <body>
+    <div ng-controller="Ctrl">
+      <div contentEditable ng-model="model">
+      </div>
+      <br>
+      <div>
+        <label>Model:</label>
+        <pre>{{ model }}</pre>
+      </div>
+     </div>
+  </body>
+</html>
