@@ -27,6 +27,8 @@
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-coffeelint": "0.0.6",
-    "coffee-script": "~1.6.3"
+    "coffee-script": "~1.6.3",
+    "karma": "~0.8.5",
+    "grunt-karma": "~0.4.4"
   }
 }

@@ -2,26 +2,33 @@
 <html ng-app="simple">
   <head>
     <title>Simple</title>
+    <!-- we need jquery for e2e testing -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="../components/angular/angular.js"></script>
     <script src="../dist/radians.js"></script>
     <script>
 angular.module('simple', ['radians'])
-.controller('Ctrl', function($scope, $window) {
+.controller('Ctrl', function($scope) {
   $scope.model = "Initial stuff <b>with bold</b> <em>and italic</em> yay"
 })
+.controller('Ctrl2', function($scope) {})
 
 angular.bootstrap(document, ['simple'])
     </script>
   </head>
   <body>
     <div ng-controller="Ctrl">
-      <div contentEditable ng-model="model">
+      <label>Contenteditable (View):</label>
+      <div id="input" contentEditable ng-model="model">
       </div>
-      <br>
+      <hr>
       <div>
         <label>Model:</label>
-        <pre>{{ model }}</pre>
+        <pre id="output" onclick="console.log('clicked the output')">{{ model }}</pre>
       </div>
      </div>
+    <div ng-controller="Ctrl2">
+      The other controller
+    </div>
   </body>
 </html>
