@@ -2,9 +2,7 @@
 
 module.exports = (grunt) ->
 
-  # Project configuration.
   grunt.initConfig
-    # Metadata.
     pkg: grunt.file.readJSON 'package.json'
     meta:
       src: 'src/'
@@ -24,6 +22,8 @@ module.exports = (grunt) ->
       test:
         files: src: ['<%= meta.src %>**/*.coffee']
         options: max_line_length: level: 'warn'
+      gruntfile:
+        files: src: ['Gruntfile.coffee']
     coffee: src:
       options: bare: true
       files:
@@ -31,15 +31,17 @@ module.exports = (grunt) ->
           '<%= meta.src %>**/*.coffee'
         ]
     karma:
-      unit: configFile: 'config/karma-unit.coffee'
+      # unit: configFile: 'config/karma-unit.coffee'
       e2e: configFile: 'config/karma-e2e.coffee'
-      unit_ci:
-        configFile: 'config/karma-unit.coffee'
-        singleRun: true
+      # unit_ci:
+      #   configFile: 'config/karma-unit.coffee'
+      #   singleRun: true
+      #   browsers: ['PhantomJS']
       e2e_ci:
         configFile: 'config/karma-e2e.coffee'
         singleRun: true
         browsers: ['PhantomJS']
+    jshint: target: ['<%= meta.target %>**/*.js']
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -49,7 +51,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-jshint'
 
 
-  grunt.registerTask 'test', ['karma']
+  grunt.registerTask 'test', ['karma:e2e_ci']
   grunt.registerTask 'lint', ['coffeelint']
-  grunt.registerTask 'build', ['clean', 'lint', 'coffee']
+  grunt.registerTask 'build', ['clean', 'coffee']
   grunt.registerTask 'default', ['lint' , 'test', 'build', 'jshint']
