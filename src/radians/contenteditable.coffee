@@ -21,3 +21,6 @@ angular.module('radians.contenteditable', [])
 
     null
 )
+.filter('typeaheadHighlight', ->
+  (matchItem, query) -> matchItem
+)
