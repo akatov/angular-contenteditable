@@ -1,23 +1,33 @@
 basePath = '..'
 
-files =
-[ ANGULAR_SCENARIO
-, ANGULAR_SCENARIO_ADAPTER
-, 'src/**/*.coffee'
-, 'test/e2e/**/*.coffee'
-, { pattern: 'examples/simple.html'
-  , watched: false
-  , included: false
-  , served: true }
-, { pattern: 'components/angular/angular.js'
-  , watched: false
-  , included: false
-  , served: true }
-, { pattern: 'dist/radians.js'
-  , watched: false
-  , included: false
-  , served: true }
+toServe = [
+  'components/angular/angular.js'
+  'components/angular-bootstrap/ui-bootstrap.js'
+  'components/angular-bootstrap/ui-bootstrap-tpls.js'
+  'dist/radians.js'
+  'examples/simple.html'
+  'examples/typeahead1.html'
+  'examples/typeahead2.html'
+  'examples/typeahead3.html'
+  'examples/states.json'
+  'examples/img/ru.gif'
+  'examples/img/gb.gif'
+  'examples/img/us.gif'
 ]
+
+toServe =
+  for file in toServe
+    pattern: file
+    watched: false
+    included: false
+    served: true
+
+files = [
+  ANGULAR_SCENARIO
+  ANGULAR_SCENARIO_ADAPTER
+  'src/**/*.coffee'
+  'test/e2e/**/*.coffee'
+].concat toServe
 
 exclude = []
 

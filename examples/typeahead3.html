@@ -10,20 +10,21 @@
     <script src="../dist/radians.js"></script>
     <script>
 angular.module('typeahead', ['ui.bootstrap', 'radians'])
-.controller('TypeaheadCtrl', function ($scope) {
+.controller('TypeaheadCtrl', function ($scope, $http) {
   $scope.selected = undefined
-  $scope.states =
-  [ 'Russia <img src="img/ru.gif">'
-  , 'USA <img src="img/us.gif">'
-  , 'UK <img src="img/gb.gif">'
-  ]
+  $scope.states = function(query){
+    return $http.get("states.json").then(function(response){
+      console.log("response", response)
+      return response.data
+    })
+  }
 })
     </script>
   </head>
   <body>
     <div class='container-fluid' ng-controller="TypeaheadCtrl">
       <pre>Model: {{ selected | json }}</pre>
-      <div ng-model="selected" typeahead="state for state in states | ignoreImgFilter:$viewValue" contenteditable>
+      <div ng-model="selected" typeahead="state for state in states($viewValue)" contenteditable>
       </div>
     </div>
   </body>
