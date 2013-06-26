@@ -24,3 +24,9 @@ angular.module('radians.contenteditable', [])
 .filter('typeaheadHighlight', ->
   (matchItem, query) -> matchItem
 )
+.filter('ignoreImgFilter', ->
+  noImg = (s) -> s.replace(/<img[^>]*>/, '')
+  (items, query) ->
+    item for item in items \
+    when noImg(item).match(new RegExp(noImg(query), 'gi'))
+)
