@@ -25,7 +25,6 @@ module.exports = (grunt) ->
       gruntfile:
         files: src: ['Gruntfile.coffee']
     coffee: src:
-      options: bare: true
       files:
         '<%= meta.target %>radians.js': [
           '<%= meta.src %>**/*.coffee'
