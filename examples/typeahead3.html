@@ -10,12 +10,12 @@
     <script src="../dist/radians.js"></script>
     <script>
 angular.module('typeahead', ['ui.bootstrap', 'radians'])
-.controller('TypeaheadCtrl', function ($scope, $http) {
+.controller('TypeaheadCtrl', function($scope, $http, limitToFilter, ignoreImgFilter) {
   $scope.selected = ""
   $scope.states = function(query){
     return $http.get("states.json").then(function(response){
       console.log("response", response)
-      return response.data
+      return limitToFilter(ignoreImgFilter(response.data, query), 2)
     })
   }
 })
@@ -24,7 +24,7 @@ angular.module('typeahead', ['ui.bootstrap', 'radians'])
   <body>
     <div class='container-fluid' ng-controller="TypeaheadCtrl">
       <pre>Model: {{ selected | json }}</pre>
-      <div ng-model="selected" typeahead="state for state in states($viewValue)" contenteditable="true" style="width:100px; height: 20px;"></div>
+      <div ng-model="selected" typeahead="state for state in states($viewValue)" contenteditable="true" style="width:400px; height: 20px;"></div>
     </div>
   </body>
 </html>

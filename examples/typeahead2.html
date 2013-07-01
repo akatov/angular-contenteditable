@@ -23,7 +23,7 @@ angular.module('typeahead', ['ui.bootstrap', 'radians'])
   <body>
     <div class='container-fluid' ng-controller="TypeaheadCtrl">
       <pre>Model: {{ selected | json }}</pre>
-      <div ng-model="selected" typeahead="state for state in states | ignoreImgFilter:$viewValue" contenteditable>
+      <div ng-model="selected" typeahead="state for state in states | ignoreImg:$viewValue" contenteditable>
       </div>
     </div>
   </body>

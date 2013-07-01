@@ -33,7 +33,7 @@ angular.module('radians.contenteditable', [])
   # don't highlight anything!
   (matchItem, query) -> matchItem
 )
-.filter('ignoreImgFilter', ->
+.filter('ignoreImg', ->
   # when matching query against the items, ignore all img tags
   (items, query) ->
     item for item in items \
