@@ -1,7 +1,19 @@
 { "name": "radians"
 , "version": "0.0.0"
+, "main": "angular-radians.js"
+, "ignore":
+  [ ".*"
+  , "Gruntfile.coffee"
+  , "package.json"
+  , "components"
+  , "config"
+  , "examples"
+  , "node_modules"
+  , "src"
+  , "test"
+  ]
 , "dependencies":
-  { "angular": "~1.0.5"
+  { "angular": "~1.0.7"
   }
 , "devDependencies":
   { "angular-mocks": "~1.0.5"

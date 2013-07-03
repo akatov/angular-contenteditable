@@ -5,29 +5,28 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
     meta:
-      src: 'src/'
-      test: 'test/'
-      target: 'dist/'
+      src: 'src'
+      test: 'test'
       banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
         '* Copyright (c) <%= grunt.template.today("yyyy") %>' +
         ' <%= pkg.author.name %>;' +
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n'
-    clean: target: src: ['<%= meta.target %>*js']
+    clean: target: src: ['<%= pkg.title %>.js']
     coffeelint:
       src:
-        files: src: ['<%= meta.src %>**/*.coffee']
+        files: src: ['<%= meta.src %>/**/*.coffee']
         options: max_line_length: level: 'warn'
       test:
-        files: src: ['<%= meta.src %>**/*.coffee']
+        files: src: ['<%= meta.src %>/**/*.coffee']
         options: max_line_length: level: 'warn'
       gruntfile:
         files: src: ['Gruntfile.coffee']
     coffee: src:
       files:
-        '<%= meta.target %>radians.js': [
-          '<%= meta.src %>**/*.coffee'
+        '<%= pkg.name %>.js': [
+          '<%= meta.src %>/**/*.coffee'
         ]
     karma:
       # unit: configFile: 'config/karma-unit.coffee'
@@ -40,15 +39,9 @@ module.exports = (grunt) ->
         configFile: 'config/karma-e2e.coffee'
         singleRun: true
         browsers: ['PhantomJS']
-    jshint: target: ['<%= meta.target %>**/*.js']
+    jshint: target: ['<%= pkg.name %>.js']
 
-  grunt.loadNpmTasks 'grunt-contrib-clean'
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.loadNpmTasks 'grunt-coffeelint'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
-  grunt.loadNpmTasks 'grunt-karma'
-  grunt.loadNpmTasks 'grunt-contrib-jshint'
-
+  require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
   grunt.registerTask 'test', ['karma:e2e_ci']
   grunt.registerTask 'lint', ['coffeelint']
