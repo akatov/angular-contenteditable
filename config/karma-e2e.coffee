@@ -1,10 +1,11 @@
 basePath = '..'
 
 toServe = [
+  'components/jquery/jquery.js'
   'components/angular/angular.js'
   'components/angular-bootstrap/ui-bootstrap.js'
   'components/angular-bootstrap/ui-bootstrap-tpls.js'
-  'dist/radians.js'
+  'angular-radians.js'
   'examples/simple.html'
   'examples/typeahead1.html'
   'examples/typeahead2.html'
