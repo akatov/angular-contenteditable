@@ -21,5 +21,6 @@
   , "angular-bootstrap": "~0.3.0"
   , "expect": "~0.2.0"
   , "jquery": "~2.0.2"
+  , "bootstrap-css": "~2.3.2"
   }
 }

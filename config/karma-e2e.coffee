@@ -1,6 +1,7 @@
 basePath = '..'
 
 toServe = [
+  'components/bootstrap-css/css/bootstrap.css'
   'components/jquery/jquery.js'
   'components/angular/angular.js'
   'components/angular-bootstrap/ui-bootstrap.js'
