@@ -2,14 +2,14 @@
 <html lang="en" ng-app="typeahead">
   <head>
     <meta charset="utf-8">
-    <link href="../components/bootstrap-css/css/bootstrap.css" rel="stylesheet">
-    <script src="../components/jquery/jquery.js"></script>
-    <script src="../components/angular/angular.js"></script>
-    <script src="../components/angular-bootstrap/ui-bootstrap.js"></script>
-    <script src="../components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="../angular-radians.js"></script>
+    <link href="../../components/bootstrap-css/css/bootstrap.css" rel="stylesheet">
+    <script src="../../components/jquery/jquery.js"></script>
+    <script src="../../components/angular/angular.js"></script>
+    <script src="../../components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="../../components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="../../lib/angular-contenteditable.js"></script>
     <script>
-angular.module('typeahead', ['ui.bootstrap', 'radians'])
+angular.module('typeahead', ['ui.bootstrap', 'contenteditable'])
 .controller('TypeaheadCtrl', function ($scope) {
   $scope.selected = undefined
   $scope.states = ['<b>sweet home</b> Alabama', '<i>cold</i> Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']

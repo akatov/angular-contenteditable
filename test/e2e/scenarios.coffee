@@ -18,7 +18,7 @@ angular.scenario.dsl 'contenteditable', ->
       , ($window, $document, done) ->
         elmt = $document.elements @name
         elmt.html args
-        elmt.trigger 'change'
+        elmt.trigger 'input'
         done(null, elmt.html(args))
 
 angular.scenario.dsl 'scope', ->
@@ -51,7 +51,7 @@ describe 'radians', ->
   describe 'contenteditable', ->
     describe 'simple application', ->
       beforeEach ->
-        browser().navigateTo 'base/examples/simple.html'
+        browser().navigateTo 'base/test/fixtures/simple.html'
 
       it 'should update the model from the view (simple text)', ->
         contenteditable('#input').enter('abc')

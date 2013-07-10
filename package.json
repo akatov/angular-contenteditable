@@ -1,8 +1,8 @@
 {
-  "name": "angular-radians",
+  "name": "angular-contenteditable",
   "version": "0.0.0",
   "description": "angular extensions",
-  "main": "angular-radians.js",
+  "main": "lib/angular-radians.js",
   "directories": {
     "test": "test"
   },

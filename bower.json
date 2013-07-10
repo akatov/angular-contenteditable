@@ -1,4 +1,4 @@
-{ "name": "radians"
+{ "name": "angular-contenteditable"
 , "version": "0.0.0"
 , "main": "angular-radians.js"
 , "ignore":
@@ -6,8 +6,6 @@
   , "Gruntfile.coffee"
   , "package.json"
   , "components"
-  , "config"
-  , "examples"
   , "node_modules"
   , "src"
   , "test"

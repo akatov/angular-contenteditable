@@ -3,11 +3,11 @@
   <head>
     <title>Simple</title>
     <!-- we need jquery for e2e testing -->
-    <script src="../components/jquery/jquery.js"></script>
-    <script src="../components/angular/angular.js"></script>
-    <script src="../angular-radians.js"></script>
+    <script src="../../components/jquery/jquery.js"></script>
+    <script src="../../components/angular/angular.js"></script>
+    <script src="../../lib/angular-contenteditable.js"></script>
     <script>
-angular.module('simple', ['radians'])
+angular.module('simple', ['contenteditable'])
 .controller('Ctrl', function($scope) {
   $scope.model = "Initial stuff <b>with bold</b> <em>and italic</em> yay"
 })

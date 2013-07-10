@@ -6,7 +6,7 @@ escapeRegexp = (str) -> str.replace /([.?*+^$[\]\\(){}|-])/g, "\\$1"
 # @param str a string possibly containing img tags
 noImg = (str) -> str.replace /<img[^>]*>/g, ''
 
-angular.module('radians.contenteditable', [])
+angular.module('contenteditable', [])
 .directive('contenteditable', ->
   require: 'ngModel',
   link: (scope, elmt, attrs, ctrl) ->

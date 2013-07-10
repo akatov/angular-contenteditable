@@ -7,6 +7,7 @@ module.exports = (grunt) ->
     meta:
       src: 'src'
       test: 'test'
+      target: 'lib/<%= pkg.name %>.js'
       banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
@@ -25,21 +26,21 @@ module.exports = (grunt) ->
         files: src: ['Gruntfile.coffee']
     coffee: src:
       files:
-        '<%= pkg.name %>.js': [
+        '<%= meta.target %>': [
           '<%= meta.src %>/**/*.coffee'
         ]
     karma:
-      # unit: configFile: 'config/karma-unit.coffee'
-      e2e: configFile: 'config/karma-e2e.coffee'
-      # unit_ci:
-      #   configFile: 'config/karma-unit.coffee'
-      #   singleRun: true
-      #   browsers: ['PhantomJS']
-      e2e_ci:
-        configFile: 'config/karma-e2e.coffee'
+      unit: configFile: 'test/config-unit.coffee'
+      e2e: configFile: 'test/config-e2e.coffee'
+      unit_ci:
+        configFile: 'test/config-unit.coffee'
         singleRun: true
         browsers: ['PhantomJS']
-    jshint: target: ['<%= pkg.name %>.js']
+      e2e_ci:
+        configFile: 'test/config-e2e.coffee'
+        singleRun: true
+        browsers: ['PhantomJS']
+    jshint: target: ['<%= meta.target %>']
 
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
