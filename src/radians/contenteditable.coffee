@@ -11,11 +11,10 @@ angular.module('radians.contenteditable', [])
   require: 'ngModel',
   link: (scope, elmt, attrs, ctrl) ->
     old_render = ctrl.$render # save for later
-    view_to_model = ->
+    view_to_model = (e) ->
       scope.$apply ->
         ctrl.$setViewValue elmt.html()
-        null
-      
+
     # view -> model
     elmt.bind 'blur', view_to_model
     elmt.bind 'input', view_to_model
@@ -37,9 +36,6 @@ angular.module('radians.contenteditable', [])
       range.collapse(true)
       sel.removeAllRanges()
       sel.addRange(range)
-      null
-
-    null
 )
 .filter('typeaheadHighlight', ->
   # don't highlight anything!
