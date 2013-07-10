@@ -11,14 +11,11 @@ angular.module('radians.contenteditable', [])
   require: 'ngModel',
   link: (scope, elmt, attrs, ctrl) ->
     old_render = ctrl.$render # save for later
-    view_to_model = (e) ->
-      scope.$apply ->
-        ctrl.$setViewValue elmt.html()
 
     # view -> model
-    elmt.bind 'blur', view_to_model
-    elmt.bind 'input', view_to_model
-    elmt.bind 'change', view_to_model
+    elmt.bind 'input', (e) ->
+      scope.$apply ->
+        ctrl.$setViewValue elmt.html()
 
     # model -> view
     ctrl.$render = ->
