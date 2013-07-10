@@ -1,6 +1,3 @@
 node_modules
-angular-radians.js
-.tmp
-.sass-cache
 app/components
 components
