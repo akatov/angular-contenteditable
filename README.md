@@ -2,6 +2,12 @@
 
 An AngularJS directive to bind html tags with the `contenteditable` attribute to models.
 
+## Install
+
+```bash
+bower install angular-contenteditable
+```
+
 ## Usage
 
 ```html
