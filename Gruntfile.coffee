@@ -7,7 +7,7 @@ module.exports = (grunt) ->
     meta:
       src: 'src'
       test: 'test'
-      target: 'lib/<%= pkg.name %>.js'
+      target: '<%= pkg.name %>.js'
       banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +

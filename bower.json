@@ -3,6 +3,7 @@
 , "main": "angular-radians.js"
 , "ignore":
   [ ".*"
+  , "README.md"
   , "Gruntfile.coffee"
   , "package.json"
   , "components"

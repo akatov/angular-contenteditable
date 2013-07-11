@@ -6,7 +6,7 @@ toServe = [
   'components/angular/angular.js'
   'components/angular-bootstrap/ui-bootstrap.js'
   'components/angular-bootstrap/ui-bootstrap-tpls.js'
-  'lib/angular-contenteditable.js'
+  'angular-contenteditable.js'
   'test/fixtures/simple.html'
   'test/fixtures/typeahead1.html'
   'test/fixtures/typeahead2.html'
