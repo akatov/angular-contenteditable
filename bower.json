@@ -1,6 +1,6 @@
 { "name": "angular-contenteditable"
 , "version": "0.0.0"
-, "main": "angular-radians.js"
+, "main": "angular-contenteditable.js"
 , "ignore":
   [ ".*"
   , "README.md"
