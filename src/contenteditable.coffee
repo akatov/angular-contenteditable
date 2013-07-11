@@ -1,11 +1,3 @@
-# utility functions to escape a query
-# @param str the string to escape
-escapeRegexp = (str) -> str.replace /([.?*+^$[\]\\(){}|-])/g, "\\$1"
-
-# removes all img tags
-# @param str a string possibly containing img tags
-noImg = (str) -> str.replace /<img[^>]*>/g, ''
-
 angular.module('contenteditable', [])
 .directive('contenteditable', ->
   require: 'ngModel',
@@ -33,14 +25,4 @@ angular.module('contenteditable', [])
       range.collapse(true)
       sel.removeAllRanges()
       sel.addRange(range)
-)
-.filter('typeaheadHighlight', ->
-  # don't highlight anything!
-  (matchItem, query) -> matchItem
-)
-.filter('ignoreImg', ->
-  # when matching query against the items, ignore all img tags
-  (items, query) ->
-    item for item in items \
-    when noImg(item).match(new RegExp(escapeRegexp(noImg(query)), 'gi'))
 )

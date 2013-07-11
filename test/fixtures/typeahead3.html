@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="typeahead">
+<html lang="en" ng-app="typeahead3">
   <head>
     <meta charset="utf-8">
     <link href="../../components/bootstrap-css/css/bootstrap.css" rel="stylesheet">
@@ -9,8 +9,8 @@
     <script src="../../components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="../../lib/angular-contenteditable.js"></script>
     <script>
-angular.module('typeahead', ['ui.bootstrap', 'contenteditable'])
-.controller('TypeaheadCtrl', function($scope, $http, limitToFilter, ignoreImgFilter) {
+angular.module('typeahead3', ['ui.bootstrap', 'contenteditable'])
+.controller('Typeahead3Ctrl', function($scope, $http, limitToFilter, ignoreImgFilter) {
   $scope.selected = ""
   $scope.states = function(query){
     return $http.get("states.json").then(function(response){
@@ -19,10 +19,30 @@ angular.module('typeahead', ['ui.bootstrap', 'contenteditable'])
     })
   }
 })
+.filter('ignoreImg', function(){
+  var escapeRegexp = function(str) {
+    return str.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1")
+  }
+  var noImg = function (str) {
+    return str.replace(/<img[^>]*>/g, '')
+  }
+  return function(items, query) {
+    var ret = []
+    items.forEach(function(item){
+      if (noImg(item).match(new RegExp(escapeRegexp(noImg(query)), 'gi')))
+        ret.push(item)
+    })
+    return ret
+  }
+})
+// override typeahead's Highlight filter - don't highlight anything
+.filter('typeaheadHighlight', function() {
+  return function(matchItem, query){return matchItem}
+})
     </script>
   </head>
   <body>
-    <div class='container-fluid' ng-controller="TypeaheadCtrl">
+    <div class='container-fluid' ng-controller="Typeahead3Ctrl">
       <pre>Model: {{ selected | json }}</pre>
       <div ng-model="selected" typeahead="state for state in states($viewValue)" contenteditable="true" style="width:400px; height: 20px;"></div>
     </div>
