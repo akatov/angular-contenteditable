@@ -1,6 +1,6 @@
 {
   "name": "angular-contenteditable",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "angular extensions",
   "main": "angular-contenteditable.js",
   "directories": {
