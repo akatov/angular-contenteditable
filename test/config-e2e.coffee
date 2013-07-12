@@ -3,7 +3,7 @@ basePath = '..'
 toServe = [
   'components/bootstrap-css/css/bootstrap.css'
   'components/jquery/jquery.js'
-  'components/angular/angular.js'
+  'components/angular-unstable/angular.js'
   'components/angular-bootstrap/ui-bootstrap.js'
   'components/angular-bootstrap/ui-bootstrap-tpls.js'
   'angular-contenteditable.js'
