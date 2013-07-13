@@ -2,20 +2,25 @@
   angular.module('contenteditable', []).directive('contenteditable', function() {
     return {
       require: 'ngModel',
-      link: function(scope, elmt, attrs, ctrl) {
+      link: function(scope, elmt, attrs, ngModel) {
         var old_render;
-        old_render = ctrl.$render;
         elmt.bind('input', function(e) {
           return scope.$apply(function() {
-            return ctrl.$setViewValue(elmt.html());
+            var html;
+            html = elmt.html();
+            if (attrs.stripBr && attrs.stripBr !== "false" && html === '<br>') {
+              html = '';
+            }
+            return ngModel.$setViewValue(html);
           });
         });
-        return ctrl.$render = function() {
+        old_render = ngModel.$render;
+        return ngModel.$render = function() {
           var el, el2, range, sel;
-          if (old_render !== null) {
+          if (old_render != null) {
             old_render();
           }
-          elmt.html(ctrl.$viewValue);
+          elmt.html(ngModel.$viewValue || '');
           el = elmt.get(0);
           range = document.createRange();
           sel = window.getSelection();

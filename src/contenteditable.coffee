@@ -1,18 +1,19 @@
 angular.module('contenteditable', [])
 .directive('contenteditable', ->
   require: 'ngModel',
-  link: (scope, elmt, attrs, ctrl) ->
-    old_render = ctrl.$render # save for later
-
+  link: (scope, elmt, attrs, ngModel) ->
     # view -> model
     elmt.bind 'input', (e) ->
       scope.$apply ->
-        ctrl.$setViewValue elmt.html()
+        html = elmt.html()
+        html = '' if attrs.stripBr && attrs.stripBr != "false" && html == '<br>'
+        ngModel.$setViewValue(html)
 
     # model -> view
-    ctrl.$render = ->
-      old_render() if old_render != null # old_render? leads to linted js
-      elmt.html ctrl.$viewValue
+    old_render = ngModel.$render # save for later
+    ngModel.$render = ->
+      old_render() if old_render?
+      elmt.html(ngModel.$viewValue || '')
       # move cursor to the end
       el = elmt.get(0)
       range = document.createRange()
