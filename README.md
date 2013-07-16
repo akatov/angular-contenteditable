@@ -10,8 +10,18 @@ bower install angular-contenteditable
 
 ## Usage
 
+```javascript
+angular.module('myapp', ['contenteditable'])
+    .controller('Ctrl', function($scope){
+        $scope.model="<i>interesting</i> stuff" })
+```
+
 ```html
-<div contenteditable ng-model="model"></div>
+<div ng-controller="Ctrl">
+  <span contenteditable="true"
+        ng-model="model"
+        strip-br="true"
+        select-non-editable="true"></span></div>
 ```
 
 ## Development

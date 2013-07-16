@@ -26,4 +26,16 @@ angular.module('contenteditable', [])
       range.collapse(true)
       sel.removeAllRanges()
       sel.addRange(range)
+
+    # select whole sub-span if it has contenteditable="false"
+    if attrs.selectNonEditable && attrs.selectNonEditable != "false"
+      elmt.click (e) ->
+        target = e.toElement
+        if target != @ && angular.element(target).attr('contenteditable') == 'false'
+          range = document.createRange()
+          sel = window.getSelection()
+          range.setStartBefore(target)
+          range.setEndAfter(target)
+          sel.removeAllRanges()
+          sel.addRange(range)
 )

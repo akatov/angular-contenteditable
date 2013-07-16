@@ -15,7 +15,7 @@
           });
         });
         old_render = ngModel.$render;
-        return ngModel.$render = function() {
+        ngModel.$render = function() {
           var el, el2, range, sel;
           if (old_render != null) {
             old_render();
@@ -34,6 +34,20 @@
           sel.removeAllRanges();
           return sel.addRange(range);
         };
+        if (attrs.selectNonEditable && attrs.selectNonEditable !== "false") {
+          return elmt.click(function(e) {
+            var range, sel, target;
+            target = e.toElement;
+            if (target !== this && angular.element(target).attr('contenteditable') === 'false') {
+              range = document.createRange();
+              sel = window.getSelection();
+              range.setStartBefore(target);
+              range.setEndAfter(target);
+              sel.removeAllRanges();
+              return sel.addRange(range);
+            }
+          });
+        }
       }
     };
   });
