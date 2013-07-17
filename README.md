@@ -24,6 +24,17 @@ angular.module('myapp', ['contenteditable'])
         select-non-editable="true"></span></div>
 ```
 
+## Notice
+
+In Chrome, when a contenteditable element X contains a non-contenteditable
+element Y as the last element, then the behaviour of the caret is the following:
+
+* When X has style `dislay` set to `block` or `inline-block`, then the caret
+  moves to the very far right edge of X when it is _immediately_ at the end of X
+  (inserting spaces moves the caret back).
+
+* When X has style `display` set to `inline`, then the caret disappears instead.
+
 ## Development
 
 ```bash
