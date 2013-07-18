@@ -6,8 +6,17 @@ angular.module('contenteditable', [])
     elmt.bind 'input', (e) ->
       scope.$apply ->
         html = elmt.html()
-        html = '' if attrs.stripBr && attrs.stripBr != "false" && html == '<br>'
+        rerender = false
+        if attrs.stripBr && attrs.stripBr != "false"
+          html = html.replace /<br>$/, ''
+        if attrs.noLineBreaks && attrs.noLineBreaks != "false"
+          html = html.replace(/<div>/g, '').replace(/<br>/g, '').replace(/<\/div>/g, '')
+          rerender = true
         ngModel.$setViewValue(html)
+        ngModel.$render() if rerender
+        if html == '' # the cursor if the contents is emty, so need to refocus
+          elmt.blur()
+          elmt.focus()
 
     # model -> view
     old_render = ngModel.$render # save for later

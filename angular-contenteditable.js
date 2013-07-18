@@ -6,12 +6,24 @@
         var old_render;
         elmt.bind('input', function(e) {
           return scope.$apply(function() {
-            var html;
+            var html, rerender;
             html = elmt.html();
-            if (attrs.stripBr && attrs.stripBr !== "false" && html === '<br>') {
-              html = '';
+            rerender = false;
+            if (attrs.stripBr && attrs.stripBr !== "false") {
+              html = html.replace(/<br>$/, '');
             }
-            return ngModel.$setViewValue(html);
+            if (attrs.noLineBreaks && attrs.noLineBreaks !== "false") {
+              html = html.replace(/<div>/g, '').replace(/<br>/g, '').replace(/<\/div>/g, '');
+              rerender = true;
+            }
+            ngModel.$setViewValue(html);
+            if (rerender) {
+              ngModel.$render();
+            }
+            if (html === '') {
+              elmt.blur();
+              return elmt.focus();
+            }
           });
         });
         old_render = ngModel.$render;
