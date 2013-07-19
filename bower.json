@@ -1,25 +1,26 @@
-{ "name": "angular-contenteditable"
-, "version": "0.3.0"
-, "main": "angular-contenteditable.js"
-, "ignore":
-  [ ".*"
-  , "README.md"
-  , "Gruntfile.coffee"
-  , "package.json"
-  , "components"
-  , "node_modules"
-  , "src"
-  , "test"
-  ]
-, "dependencies":
-  { "angular-unstable": "~1.1.5"
-  }
-, "devDependencies":
-  { "angular-mocks": "~1.0.5"
-  , "angular-scenario": "~1.0.5"
-  , "angular-bootstrap": "~0.3.0"
-  , "expect": "~0.2.0"
-  , "jquery": "~2.0.2"
-  , "bootstrap-css": "~2.3.2"
+{
+  "name": "angular-contenteditable",
+  "version": "0.3.0",
+  "main": "angular-contenteditable.js",
+  "ignore": [
+    ".*",
+    "README.md",
+    "Gruntfile.coffee",
+    "package.json",
+    "components",
+    "node_modules",
+    "src",
+    "test"
+  ],
+  "dependencies": {
+    "angular-unstable": "~1.1.5"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.0.5",
+    "angular-scenario": "~1.0.5",
+    "expect": "~0.2.0",
+    "jquery": "~2.0.2",
+    "bootstrap-css": "~2.3.2",
+    "angular-bootstrap": "~0.4.0"
   }
 }
