@@ -47,8 +47,8 @@ angular.scenario.dsl 'scope', ->
       else
         done "don't understand argument #{arg}"
 
-describe 'radians', ->
-  describe 'contenteditable', ->
+describe 'module contenteditable', ->
+  describe 'directive contenteditable', ->
     describe 'simple application', ->
       beforeEach ->
         browser().navigateTo 'base/test/fixtures/simple.html'

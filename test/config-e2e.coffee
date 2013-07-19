@@ -1,52 +1,52 @@
-basePath = '..'
-
-toServe = [
-  'components/bootstrap-css/css/bootstrap.css'
-  'components/jquery/jquery.js'
-  'components/angular-unstable/angular.js'
-  'components/angular-bootstrap/ui-bootstrap.js'
-  'components/angular-bootstrap/ui-bootstrap-tpls.js'
-  'angular-contenteditable.js'
-  'test/fixtures/simple.html'
-  'test/fixtures/typeahead1.html'
-  'test/fixtures/typeahead2.html'
-  'test/fixtures/typeahead3.html'
-  'test/fixtures/states.json'
-  'test/fixtures/img/ru.gif'
-  'test/fixtures/img/gb.gif'
-  'test/fixtures/img/us.gif'
-]
-
-toServe =
-  for file in toServe
+module.exports = (config) ->
+  toServe = for file in [
+    'components/bootstrap-css/css/bootstrap.css'
+    'components/jquery/jquery.js'
+    'components/angular-unstable/angular.js'
+    'components/angular-bootstrap/ui-bootstrap.js'
+    'components/angular-bootstrap/ui-bootstrap-tpls.js'
+    'angular-contenteditable.js'
+    'test/fixtures/simple.html'
+    'test/fixtures/typeahead1.html'
+    'test/fixtures/typeahead2.html'
+    'test/fixtures/typeahead3.html'
+    'test/fixtures/states.json'
+    'test/fixtures/img/ru.gif'
+    'test/fixtures/img/gb.gif'
+    'test/fixtures/img/us.gif'
+  ]
     pattern: file
     watched: false
     included: false
     served: true
 
-files = [
-  ANGULAR_SCENARIO
-  ANGULAR_SCENARIO_ADAPTER
-  'src/**/*.coffee'
-  'test/e2e/**/*.coffee'
-].concat toServe
+  config.set
+    basePath: '..'
 
-exclude = []
+    frameworks: ['ng-scenario']
 
-reporters = ['progress']
+    preprocessors: '**/*.coffee': 'coffee'
 
-port = 9876
+    files: [
+      'test/e2e/**/*.coffee'
+    ].concat toServe
 
-runnerPort = 9100
+    exclude: []
 
-colors = true
+    reporters: ['progress']
 
-logLevel = LOG_INFO
+    port: 9876
 
-autoWatch = true
+    runnerPort: 9100
 
-browsers = ['Chrome']
+    colors: true
 
-captureTimeout = 60000
+    logLevel: config.LOG_INFO
 
-singleRun = false
+    autoWatch: true
+
+    browsers: ['Chrome']
+
+    captureTimeout: 60000
+
+    singleRun: false

@@ -1,30 +1,33 @@
-basePath = '..'
+module.exports = (config) ->
+  config.set
+    basePath: '..'
+    frameworks: ['mocha']
+    files: [
+      'components/expect/expect.js'
+      'components/angular/angular.js'
+      'src/**/*.coffee'
+      'test/unit/*.coffee'
+    ]
 
-files =
-[ MOCHA
-, MOCHA_ADAPTER
-, 'components/expect/expect.js'
-, 'components/angular/angular.js'
-, 'src/**/*.coffee'
-, 'test/unit/*.coffee'
-]
 
-exclude = []
+    preprocessors: '**/*.coffee': 'coffee'
 
-reporters = ['progress']
+    exclude: []
 
-port = 9876
+    reporters: ['progress']
 
-runnerPort = 9100
+    port: 9876
 
-colors = true
+    runnerPort: 9100
 
-logLevel = LOG_INFO
+    colors: true
 
-autoWatch = true
+    logLevel: LOG_INFO
 
-browsers = ['Chrome']
+    autoWatch: true
 
-captureTimeout = 60000
+    browsers: ['Chrome']
 
-singleRun = false
+    captureTimeout: 60000
+
+    singleRun: false

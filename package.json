@@ -24,12 +24,15 @@
     "should": "~1.2.2",
     "grunt-coffee-redux": "~0.2.3",
     "grunt-contrib-coffee": "~0.7.0",
-    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-jshint": "~0.6.0",
-    "grunt-coffeelint": "0.0.6",
+    "grunt-coffeelint": "0.0.7",
     "coffee-script": "~1.6.3",
-    "karma": "~0.8.5",
-    "grunt-karma": "~0.4.4"
+    "karma": "~0.9.4",
+    "grunt-karma": "~0.5.0",
+    "karma-ng-scenario": "0.0.2",
+    "karma-coffee-preprocessor": "0.0.2",
+    "karma-mocha": "0.0.3"
   }
 }
