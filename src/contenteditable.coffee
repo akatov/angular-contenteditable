@@ -10,8 +10,10 @@ angular.module('contenteditable', [])
         if attrs.stripBr && attrs.stripBr != "false"
           html = html.replace /<br>$/, ''
         if attrs.noLineBreaks && attrs.noLineBreaks != "false"
-          html = html.replace(/<div>/g, '').replace(/<br>/g, '').replace(/<\/div>/g, '')
-          rerender = true
+          html2 = html.replace(/<div>/g, '').replace(/<br>/g, '').replace(/<\/div>/g, '')
+          if html2 != html
+            rerender = true
+            html = html2
         ngModel.$setViewValue(html)
         ngModel.$render() if rerender
         if html == '' # the cursor if the contents is emty, so need to refocus

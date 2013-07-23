@@ -6,15 +6,18 @@
         var old_render;
         elmt.bind('input', function(e) {
           return scope.$apply(function() {
-            var html, rerender;
+            var html, html2, rerender;
             html = elmt.html();
             rerender = false;
             if (attrs.stripBr && attrs.stripBr !== "false") {
               html = html.replace(/<br>$/, '');
             }
             if (attrs.noLineBreaks && attrs.noLineBreaks !== "false") {
-              html = html.replace(/<div>/g, '').replace(/<br>/g, '').replace(/<\/div>/g, '');
-              rerender = true;
+              html2 = html.replace(/<div>/g, '').replace(/<br>/g, '').replace(/<\/div>/g, '');
+              if (html2 !== html) {
+                rerender = true;
+                html = html2;
+              }
             }
             ngModel.$setViewValue(html);
             if (rerender) {
