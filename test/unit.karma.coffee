@@ -1,14 +1,14 @@
-module.exports = (config) ->
-  config.set
+module.exports = (karma) ->
+  karma.set
     basePath: '..'
+
     frameworks: ['mocha']
+
     files: [
-      'components/expect/expect.js'
-      'components/angular/angular.js'
-      'src/**/*.coffee'
+      'bower_components/angular/angular.js'
+      'angular-contenteditable.js'
       'test/unit/*.coffee'
     ]
-
 
     preprocessors: '**/*.coffee': 'coffee'
 
@@ -22,7 +22,7 @@ module.exports = (config) ->
 
     colors: true
 
-    logLevel: LOG_INFO
+    logLevel: karma.LOG_INFO
 
     autoWatch: true
 
