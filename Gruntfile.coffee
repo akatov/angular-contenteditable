@@ -17,7 +17,10 @@ module.exports = (grunt) ->
         configFile: 'test/e2e.karma.coffee'
         singleRun: true
         browsers: ['PhantomJS']
-    jshint: src: ['angular-contenteditable.js']
+    jshint:
+      src: ['angular-contenteditable.js']
+      options:
+        asi: true
 
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
