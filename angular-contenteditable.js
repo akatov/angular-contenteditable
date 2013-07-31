@@ -1,5 +1,5 @@
 angular.module('contenteditable', [])
-    .directive('contenteditable', function() { return {
+    .directive('contenteditable', ['$timeout', function($timeout) { return {
         require: 'ngModel',
         link: function($scope, $element, attrs, ngModel) {
             var old_render
@@ -26,8 +26,10 @@ angular.module('contenteditable', [])
                     if (html === '') {
                         // the cursor disappears if the contents is empty
                         // so we need to refocus
-                        $element.blur()
-                        $element.focus()
+                        $timeout(function(){
+                            $element.blur()
+                            $element.focus()
+                        })
                     }
                 })
             })
@@ -68,5 +70,4 @@ angular.module('contenteditable', [])
                 })
             }
         }
-    }})
-
+    }}])
