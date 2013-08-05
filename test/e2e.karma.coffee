@@ -19,6 +19,7 @@ module.exports = (karma) ->
     files: [
       'test/e2e/**/*.coffee'
       'angular-contenteditable.js'
+      'angular-contenteditable-scenario.js'
     ].concat toServe
 
     exclude: []

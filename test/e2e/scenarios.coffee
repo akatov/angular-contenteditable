@@ -1,26 +1,3 @@
-angular.scenario.dsl 'contenteditable', ->
-  (name) ->
-    @name = name
-    enter: (value) ->
-      @addFutureAction "contenteditable '#{@name}' enter '#{value}'"
-      , ($window, $document, done) ->
-        elmt = $document.elements @name
-        elmt.text value
-        elmt.trigger 'input'
-        done()
-    html: (args...) ->
-      futureName =
-        if args.length == 0
-          "contenteditable '#{@name}' html"
-        else
-          "contenteditable '#{@name}' set html to '#{args[0]}'"
-      @addFutureAction futureName
-      , ($window, $document, done) ->
-        elmt = $document.elements @name
-        elmt.html args
-        elmt.trigger 'input'
-        done(null, elmt.html(args))
-
 angular.scenario.dsl 'scope', ->
   (ctrl, arg = null) ->
     futureName =
@@ -54,13 +31,13 @@ describe 'module contenteditable', ->
         browser().navigateTo 'base/test/fixtures/simple.html'
 
       it 'should update the model from the view (simple text)', ->
-        contenteditable('#input').enter('abc')
+        element('#input').enter('abc')
         expect(element('#input').html()).toBe 'abc'
         expect(scope('Ctrl', 'model')).toBe 'abc'
         expect(element('#output').html()).toBe 'abc'
 
       it 'should update the model from the view (text with spans)', ->
-        contenteditable('#input').html('abc <span style="color:red">red</span>')
+        element('#input').html('abc <span style="color:red">red</span>')
         expect(scope('Ctrl', 'model')).toBe 'abc <span style="color:red">red</span>'
         expect(element('#input span').html()).toBe 'red'
         expect(element('#output').html()).toBe 'abc &lt;span style="color:red"&gt;red&lt;/span&gt;'
@@ -73,6 +50,5 @@ describe 'module contenteditable', ->
         scope('Ctrl', ($scope) -> $scope.model = 'a <span style="color:red">red</span> b')
         expect(element('#input').html()).toBe 'a <span style="color:red">red</span> b'
         expect(element('#input span').html()).toBe 'red'
-
         ## Why doesn't it work on this one??!!
         # expect(element('#output').html()).toBe 'oops'
