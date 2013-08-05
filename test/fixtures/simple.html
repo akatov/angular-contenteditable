@@ -8,11 +8,9 @@
     <script src="../../angular-contenteditable.js"></script>
     <script>
 angular.module('simple', ['contenteditable'])
-.controller('Ctrl', function($scope) {
-  $scope.model = "Initial stuff <b>with bold</b> <em>and italic</em> yay"
-})
-.controller('Ctrl2', function($scope) {})
-
+  .controller('Ctrl', function($scope) {
+    $scope.model = "Initial stuff <b>with bold</b> <em>and italic</em> yay"
+  })
 angular.bootstrap(document, ['simple'])
     </script>
   </head>
@@ -26,9 +24,18 @@ angular.bootstrap(document, ['simple'])
         <label>Model:</label>
         <pre id="output" onclick="console.log('clicked the output')">{{ model }}</pre>
       </div>
-     </div>
-    <div ng-controller="Ctrl2">
-      The other controller
+      <hr>
+      <div contenteditable>Edit me - I don't affect anything</div>
+      <hr>
+      <div id="i1" contenteditable="true" ng-model="model"></div>
+      <hr>
+      <div id="i2" contenteditable="TRUE" ng-model="model"></div>
+      <hr>
+      <div id="i3" contenteditable="tRuE" ng-model="model"></div>
+      <hr>
+      <div id="i4" contenteditable="tRUe" ng-model="model"></div>
+      <hr>
+      <div id="i5" contenteditable="f" ng-model="model"></div>
     </div>
   </body>
 </html>

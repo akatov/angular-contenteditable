@@ -1,8 +1,19 @@
+/**
+ * @see http://docs.angularjs.org/guide/concepts
+ * @see http://docs.angularjs.org/api/ng.directive:ngModel.NgModelController
+ * @see https://github.com/angular/angular.js/issues/528#issuecomment-7573166
+ */
+
 angular.module('contenteditable', [])
   .directive('contenteditable', ['$timeout', function($timeout) { return {
-    require: 'ngModel',
+    restrict: 'A',
+    require: '?ngModel',
     link: function($scope, $element, attrs, ngModel) {
-      var old_render
+      // don't do anything unless this is actually bound to a model
+      if (!ngModel) {
+        return
+      }
+
       // view -> model
       $element.bind('input', function(e) {
         $scope.$apply(function() {
@@ -35,11 +46,11 @@ angular.module('contenteditable', [])
       })
 
       // model -> view
-      old_render = ngModel.$render
+      var oldRender = ngModel.$render
       ngModel.$render = function() {
         var el, el2, range, sel
-        if (!!old_render) {
-          old_render()
+        if (!!oldRender) {
+          oldRender()
         }
         $element.html(ngModel.$viewValue || '')
         el = $element.get(0)
