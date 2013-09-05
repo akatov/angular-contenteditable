@@ -38,8 +38,8 @@ angular.module('contenteditable', [])
             // the cursor disappears if the contents is empty
             // so we need to refocus
             $timeout(function(){
-              $element.blur()
-              $element.focus()
+              $element[0].blur()
+              $element[0].focus()
             })
           }
         })
@@ -53,7 +53,7 @@ angular.module('contenteditable', [])
           oldRender()
         }
         $element.html(ngModel.$viewValue || '')
-        el = $element.get(0)
+        el = $element[0]
         range = document.createRange()
         sel = window.getSelection()
         if (el.childNodes.length > 0) {
