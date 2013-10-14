@@ -39,6 +39,6 @@ element Y as the last element, then the behaviour of the caret is the following:
 
 ```bash
 npm install
-grunt build
-grunt karma:e2e
+bower install
+grunt
 ```
