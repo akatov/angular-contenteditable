@@ -1,4 +1,5 @@
 # angular-contenteditable
+[![Build Status](https://travis-ci.org/akatov/angular-contenteditable.png)](https://travis-ci.org/akatov/angular-contenteditable)
 
 An AngularJS directive to bind html tags with the `contenteditable` attribute to models.
 
