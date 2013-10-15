@@ -38,8 +38,8 @@ angular.module('contenteditable', [])
             // the cursor disappears if the contents is empty
             // so we need to refocus
             $timeout(function(){
-              $element.blur()
-              $element.focus()
+              $element[0].blur()
+              $element[0].focus()
             })
           }
         })
