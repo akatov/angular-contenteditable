@@ -1,5 +1,6 @@
 # angular-contenteditable
 [![Build Status](https://travis-ci.org/akatov/angular-contenteditable.png)](https://travis-ci.org/akatov/angular-contenteditable)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/akatov/angular-contenteditable/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 An AngularJS directive to bind html tags with the `contenteditable` attribute to models.
 
