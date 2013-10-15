@@ -1,0 +1,94 @@
+#!/usr/bin/env ruby
+
+require 'tmpdir'
+require 'json'
+
+puts 'running post-commit hook'
+
+BOWER = JSON.parse File.read 'bower.json'
+
+def commit
+  @commit ||= `git log | head -1 | cut -d' ' -f2`
+end
+
+# get version of library from bower.json
+def bower_version(library)
+  BOWER["dependencies"][library] || BOWER["devDependencies"][library]
+end
+
+# return the base url for a library from bower / github
+def library_base_url(library)
+  # TODO: figure out how to clean the cache so we can use `bower --offline`
+  (@library_base_url ||= {})[library] ||=
+    JSON.parse(`bower lookup #{library} --json`)["url"]
+    .sub(/^git:\/\//, 'https://raw.')
+    .sub(/\.git$/, "/#{bower_version(library).sub(/~/, '')}/")
+end
+
+# transform script ref to bower URL
+def script_url(src)
+  if src =~ /\/bower_components\//
+    parts = src.split('/bower_components/')[1].split('/')
+    library_base_url(parts[0]) + parts.drop(1).join('/')
+  else
+    src.sub(/^\.\.\/\.\./,
+            'https://raw.github.com/akatov/angular-contenteditable/master')
+  end
+end
+
+# link href
+# script src
+def replace_script_and_link(contents)
+  ["script src", "link href"].reduce(contents) do |c, tag|
+    c.gsub /#{tag}="([^"]*)"/ do
+      "#{tag}=\"#{script_url($1)}\""
+    end
+  end
+end
+
+def index_header
+  <<EOF
+<html>
+  <head>
+    <title>angular-contenteditable</title>
+  </head>
+  <body>
+    <h1>angular contenteditable</h1>
+    <h2>examples<h2>
+    <ul>
+EOF
+end
+
+def index_footer
+  <<EOF
+    </ul>
+  </body>
+</html>
+EOF
+end
+
+puts commit
+
+def execute
+  Dir.mktmpdir do |temp|
+    FileUtils.cp_r 'test/fixtures/', temp
+    FileUtils.mv "#{temp}/fixtures", "#{temp}/examples"
+    File.open("#{temp}/index.html", File::CREAT | File::WRONLY) do |index_file|
+      index_file.write index_header
+      Dir.glob("#{temp}/examples/*.html").each do |file_name|
+        bn = File.basename file_name
+        puts "changing references in #{bn}"
+        File.open(file_name, File::RDWR) do |file|
+          file.write replace_script_and_link(file.read)
+        end
+        index_file.write "      <li><a href='examples/#{bn}'>#{bn}</a></li>\n"
+      end
+      index_file.write index_footer
+    end
+    FileUtils.cp_r temp, '.'
+    File.exists? 'temp' and FileUtils.rm_r 'temp'
+    FileUtils.mv temp.split('/').last, 'temp'
+  end
+end
+
+execute
