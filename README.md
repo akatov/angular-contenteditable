@@ -43,3 +43,7 @@ npm install
 bower install
 grunt
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/akatov/angular-contenteditable/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
