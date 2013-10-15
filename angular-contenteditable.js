@@ -53,7 +53,7 @@ angular.module('contenteditable', [])
           oldRender()
         }
         $element.html(ngModel.$viewValue || '')
-        el = $element.get(0)
+        el = $element[0]
         range = document.createRange()
         sel = window.getSelection()
         if (el.childNodes.length > 0) {
@@ -67,7 +67,7 @@ angular.module('contenteditable', [])
         sel.addRange(range)
       }
       if (attrs.selectNonEditable && attrs.selectNonEditable !== "false") {
-        $element.click(function(e) {
+        $element.bind('click', function(e) {
           var range, sel, target
           target = e.toElement
           if (target !== this && angular.element(target).attr('contenteditable') === 'false') {
