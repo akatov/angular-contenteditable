@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="typeahead2">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://rawgithub.com/jozefizso/bower-bootstrap-css/2.3.2/css/bootstrap.css" rel="stylesheet">
+    <script src="https://rawgithub.com/components/jquery/2.0.2/jquery.js"></script>
+    <script src="https://rawgithub.com/johannestroeger/bower-angular-unstable/1.1.5/angular.js"></script>
+    <script src="https://rawgithub.com/angular-ui/bootstrap-bower/0.4.0/ui-bootstrap.js"></script>
+    <script src="https://rawgithub.com/angular-ui/bootstrap-bower/0.4.0/ui-bootstrap-tpls.js"></script>
+    <script src="https://rawgithub.com/akatov/angular-contenteditable/master/angular-contenteditable.js"></script>
+    <script>
+angular.module('typeahead2', ['ui.bootstrap', 'contenteditable'])
+.controller('Typeahead2Ctrl', function ($scope) {
+  $scope.selected = undefined
+  $scope.states =
+  [ 'Russia <img src="img/ru.gif">'
+  , 'USA <img src="img/us.gif">'
+  , 'UK <img src="img/gb.gif">'
+  ]
+})
+.filter('ignoreImg', function(){
+  var escapeRegexp = function(str) {
+    return str.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1")
+  }
+  var noImg = function (str) {
+    return str.replace(/<img[^>]*>/g, '')
+  }
+  return function(items, query) {
+    var ret = []
+    items.forEach(function(item){
+      if (noImg(item).match(new RegExp(escapeRegexp(noImg(query)), 'gi')))
+        ret.push(item)
+    })
+    return ret
+  }
+})
+// override typeahead's Highlight filter - don't highlight anything
+.filter('typeaheadHighlight', function() {
+  return function(matchItem, query){return matchItem}
+})
+</script>
+  </head>
+  <body>
+    <div class='container-fluid' ng-controller="Typeahead2Ctrl">
+      <pre>Model: {{ selected | json }}</pre>
+      <div ng-model="selected" typeahead="state for state in states | ignoreImg:$viewValue" contenteditable>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="simple">
+  <head>
+    <title>Simple</title>
+    <!-- we need jquery for e2e testing -->
+    <script src="https://rawgithub.com/components/jquery/2.0.2/jquery.js"></script>
+    <script src="https://rawgithub.com/johannestroeger/bower-angular-unstable/1.1.5/angular.js"></script>
+    <script src="https://rawgithub.com/akatov/angular-contenteditable/master/angular-contenteditable.js"></script>
+    <script>
+angular.module('simple', ['contenteditable'])
+.controller('Ctrl', function($scope) {
+//  $scope.model2 = 'hello'
+  $scope.model = "Initial stuff <b>with bold</b> <em>and italic</em> yay"
+})
+.controller('Ctrl2', function($scope) {})
+
+angular.bootstrap(document, ['simple'])
+    </script>
+  </head>
+  <body>
+    <div ng-controller="Ctrl">
+      <label>Contenteditable (View):</label>
+      <div id="input" contenteditable="true" ng-model="model" strip-br="true">
+        something
+      </div>
+      <hr>
+      <div>
+        <label>Model:</label>
+        <pre id="output" onclick="console.log('clicked the output')">{{ model }}</pre>
+      </div>
+     </div>
+  </body>
+</html>
