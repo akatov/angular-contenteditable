@@ -21,7 +21,7 @@ def library_base_url(library)
   # TODO: figure out how to clean the cache so we can use `bower --offline`
   (@library_base_url ||= {})[library] ||=
     JSON.parse(`bower lookup #{library} --json`)["url"]
-    .sub(/^git:\/\//, 'https://raw.')
+    .sub(/^git:\/\/github.com/, 'https://rawgithub.com')
     .sub(/\.git$/, "/#{bower_version(library).sub(/~/, '')}/")
 end
 
@@ -32,7 +32,7 @@ def script_url(src)
     library_base_url(parts[0]) + parts.drop(1).join('/')
   else
     src.sub(/^\.\.\/\.\./,
-            'https://raw.github.com/akatov/angular-contenteditable/master')
+            'https://rawgithub.com/akatov/angular-contenteditable/master')
   end
 end
 
@@ -78,16 +78,18 @@ def execute
       Dir.glob("#{temp}/examples/*.html").each do |file_name|
         bn = File.basename file_name
         puts "changing references in #{bn}"
-        File.open(file_name, File::RDWR) do |file|
-          file.write replace_script_and_link(file.read)
-        end
+        File.write file_name, replace_script_and_link(File.read file_name)
         index_file.write "      <li><a href='examples/#{bn}'>#{bn}</a></li>\n"
       end
       index_file.write index_footer
     end
-    FileUtils.cp_r temp, '.'
-    File.exists? 'temp' and FileUtils.rm_r 'temp'
-    FileUtils.mv temp.split('/').last, 'temp'
+    `git checkout gh-pages`
+    ['index.html', 'examples'].each do |f|
+      FileUtils.cp_r "#{temp}/#{f}", '.'
+      `git add #{f}`
+    end
+    `git commit --message "updating gh-pages for commit #{commit}"`
+    `git checkout master`
   end
 end
 
