@@ -2,9 +2,7 @@
 <html ng-app="simple">
   <head>
     <title>Simple</title>
-    <!-- we need jquery for e2e testing -->
-    <script src="https://rawgithub.com/components/jquery/2.0.2/jquery.js"></script>
-    <script src="https://rawgithub.com/johannestroeger/bower-angular-unstable/1.1.5/angular.js"></script>
+    <script src="https://rawgithub.com/angular/bower-angular/1.0.7/angular.js"></script>
     <script src="https://rawgithub.com/akatov/angular-contenteditable/master/angular-contenteditable.js"></script>
     <script>
 angular.module('simple', ['contenteditable'])
@@ -16,26 +14,26 @@ angular.bootstrap(document, ['simple'])
   </head>
   <body>
     <div ng-controller="Ctrl">
-      <label>Contenteditable (View):</label>
-      <div id="input" contenteditable ng-model="model">
-      </div>
+      <label>Model (non-editable):</label>
+      <pre id="output">{{ model }}</pre>
       <hr>
-      <div>
-        <label>Model:</label>
-        <pre id="output" onclick="console.log('clicked the output')">{{ model }}</pre>
-      </div>
+      <label>Contenteditable View (1):</label>
+      <div id="input" contenteditable ng-model="model"></div>
       <hr>
+      <label>Contenteditable View (2):</label>
+      <div id="input2" contenteditable="true" ng-model="model"></div>
+      <hr>
+      <label>Contenteditable View (3):</label>
+      <div id="input3" contenteditable="TRUE" ng-model="model"></div>
+      <hr>
+      <label>non-contenteditable View:</label>
+      <div id="non-editable" contenteditable="false" ng-model="model"></div>
+      <hr>
+      <label>Input (edit verbatim)</label>
+      <input ng-model="model" style="width:100%">
+      <hr>
+      <label>Contenteditable without Model</label>
       <div contenteditable>Edit me - I don't affect anything</div>
-      <hr>
-      <div id="i1" contenteditable="true" ng-model="model"></div>
-      <hr>
-      <div id="i2" contenteditable="TRUE" ng-model="model"></div>
-      <hr>
-      <div id="i3" contenteditable="tRuE" ng-model="model"></div>
-      <hr>
-      <div id="i4" contenteditable="tRUe" ng-model="model"></div>
-      <hr>
-      <div id="i5" contenteditable="f" ng-model="model"></div>
     </div>
   </body>
 </html>
