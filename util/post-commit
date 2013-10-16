@@ -84,6 +84,7 @@ def execute
       index_file.write index_footer
     end
     `git checkout gh-pages`
+    `git rm -r examples`
     ['index.html', 'examples'].each do |f|
       FileUtils.cp_r "#{temp}/#{f}", '.'
       `git add #{f}`
