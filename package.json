@@ -25,7 +25,7 @@
     "matchdep": "~0.3.0",
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1.9",
-    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-jshint": "~0.7.1",
     "grunt-karma": "~0.6.2",
     "bower": "~1.2.7",
     "karma": "~0.10.2",
