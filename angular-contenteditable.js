@@ -14,16 +14,27 @@ angular.module('contenteditable', [])
         return
       }
 
+      // options
+      var opts = {}
+      angular.forEach([
+        'stripBr',
+        'noLineBreaks',
+        'selectNonEditable',
+      ], function(opt) {
+        var o = attrs[opt]
+        opts[opt] = o && o !== 'false'
+      })
+
       // view -> model
       element.bind('input', function(e) {
         scope.$apply(function() {
           var html, html2, rerender
           html = element.html()
           rerender = false
-          if (attrs.stripBr && attrs.stripBr !== "false") {
+          if (opts.stripBr) {
             html = html.replace(/<br>$/, '')
           }
-          if (attrs.noLineBreaks && attrs.noLineBreaks !== "false") {
+          if (opts.noLineBreaks) {
             html2 = html.replace(/<div>/g, '').replace(/<br>/g, '').replace(/<\/div>/g, '')
             if (html2 !== html) {
               rerender = true
@@ -66,7 +77,7 @@ angular.module('contenteditable', [])
         sel.removeAllRanges()
         sel.addRange(range)
       }
-      if (attrs.selectNonEditable && attrs.selectNonEditable !== "false") {
+      if (opts.selectNonEditable) {
         element.bind('click', function(e) {
           var range, sel, target
           target = e.toElement
