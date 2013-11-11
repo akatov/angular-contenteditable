@@ -20,6 +20,7 @@ angular.module('contenteditable', [])
         'stripBr',
         'noLineBreaks',
         'selectNonEditable',
+        'moveCaretToEndOnChange',
       ], function(opt) {
         var o = attrs[opt]
         opts[opt] = o && o !== 'false'
@@ -64,18 +65,20 @@ angular.module('contenteditable', [])
           oldRender()
         }
         element.html(ngModel.$viewValue || '')
-        el = element[0]
-        range = document.createRange()
-        sel = window.getSelection()
-        if (el.childNodes.length > 0) {
-          el2 = el.childNodes[el.childNodes.length - 1]
-          range.setStartAfter(el2)
-        } else {
-          range.setStartAfter(el)
+        if (opts.moveCaretToEndOnChange) {
+          el = element[0]
+          range = document.createRange()
+          sel = window.getSelection()
+          if (el.childNodes.length > 0) {
+            el2 = el.childNodes[el.childNodes.length - 1]
+            range.setStartAfter(el2)
+          } else {
+            range.setStartAfter(el)
+          }
+          range.collapse(true)
+          sel.removeAllRanges()
+          sel.addRange(range)
         }
-        range.collapse(true)
-        sel.removeAllRanges()
-        sel.addRange(range)
       }
       if (opts.selectNonEditable) {
         element.bind('click', function(e) {
