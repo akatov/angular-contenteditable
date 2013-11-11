@@ -8,17 +8,17 @@ angular.module('contenteditable', [])
   .directive('contenteditable', ['$timeout', function($timeout) { return {
     restrict: 'A',
     require: '?ngModel',
-    link: function($scope, $element, attrs, ngModel) {
+    link: function(scope, element, attrs, ngModel) {
       // don't do anything unless this is actually bound to a model
       if (!ngModel) {
         return
       }
 
       // view -> model
-      $element.bind('input', function(e) {
-        $scope.$apply(function() {
+      element.bind('input', function(e) {
+        scope.$apply(function() {
           var html, html2, rerender
-          html = $element.html()
+          html = element.html()
           rerender = false
           if (attrs.stripBr && attrs.stripBr !== "false") {
             html = html.replace(/<br>$/, '')
@@ -38,8 +38,8 @@ angular.module('contenteditable', [])
             // the cursor disappears if the contents is empty
             // so we need to refocus
             $timeout(function(){
-              $element[0].blur()
-              $element[0].focus()
+              element[0].blur()
+              element[0].focus()
             })
           }
         })
@@ -52,8 +52,8 @@ angular.module('contenteditable', [])
         if (!!oldRender) {
           oldRender()
         }
-        $element.html(ngModel.$viewValue || '')
-        el = $element[0]
+        element.html(ngModel.$viewValue || '')
+        el = element[0]
         range = document.createRange()
         sel = window.getSelection()
         if (el.childNodes.length > 0) {
@@ -67,7 +67,7 @@ angular.module('contenteditable', [])
         sel.addRange(range)
       }
       if (attrs.selectNonEditable && attrs.selectNonEditable !== "false") {
-        $element.bind('click', function(e) {
+        element.bind('click', function(e) {
           var range, sel, target
           target = e.toElement
           if (target !== this && angular.element(target).attr('contenteditable') === 'false') {
