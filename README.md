@@ -33,10 +33,13 @@ angular.module('myapp', ['contenteditable'])
 
 ## Notice
 
+The directive currently does not work in any version of Internet Explorer or Opera < 15.
+Both browsers don't fire the `input` event for contenteditable fields.
+
 In Chrome, when a contenteditable element X contains a non-contenteditable
 element Y as the last element, then the behaviour of the caret is the following:
 
-* When X has style `dislay` set to `block` or `inline-block`, then the caret
+* When X has style `display` set to `block` or `inline-block`, then the caret
   moves to the very far right edge of X when it is _immediately_ at the end of X
   (inserting spaces moves the caret back).
 
