@@ -1,6 +1,6 @@
 {
   "name": "angular-contenteditable",
-  "version": "0.3.6",
+  "version": "0.3.7-mh+20131215",
   "main": "angular-contenteditable.js",
   "ignore": [
     ".*",
@@ -13,7 +13,7 @@
     "test"
   ],
   "dependencies": {
-    "angular-unstable": "~1.1.5"
+    "angular": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.5",
