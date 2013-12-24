@@ -25,7 +25,15 @@ angular.module('contenteditable', [])
         var o = attrs[opt]
         opts[opt] = o && o !== 'false'
       })
-
+      // clear paste data
+          element.bind('paste', function(e){
+            setTimeout(function() {
+              scope.$apply(function() {
+                ngModel.$setViewValue(e.target.innerText);
+              });
+              element.html(ngModel.$viewValue);
+            });
+          });
       // view -> model
       element.bind('input', function(e) {
         scope.$apply(function() {
