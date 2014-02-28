@@ -77,7 +77,9 @@ angular.module('contenteditable', [])
           }
           range.collapse(true)
           sel.removeAllRanges()
-          sel.addRange(range)
+          $timeout(function() {
+            sel.addRange(range)
+          })
         }
       }
       if (opts.selectNonEditable) {
