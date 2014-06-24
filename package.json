@@ -11,8 +11,8 @@
     "test": "test"
   },
   "scripts": {
-    "install": "node_modules/.bin/bower install",
-    "test": "node_modules/.bin/grunt test"
+    "install": "bower install",
+    "test": "grunt test"
   },
   "repository": "",
   "keywords": [
