@@ -12,10 +12,8 @@
     "src",
     "test"
   ],
-  "dependencies": {
-    "angular-unstable": "~1.1.5"
-  },
   "devDependencies": {
+    "angular-unstable": "~1.1.5",
     "angular-mocks": "~1.0.5",
     "angular-scenario": "~1.0.5",
     "expect": "~0.2.0",
