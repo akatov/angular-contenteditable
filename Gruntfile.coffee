@@ -7,14 +7,9 @@ module.exports = (grunt) ->
     meta:
       test: 'test'
     karma:
-      unit: configFile: 'test/unit.karma.coffee'
-      e2e: configFile: 'test/e2e.karma.coffee'
-      unit_ci:
-        configFile: 'test/unit.karma.coffee'
-        singleRun: true
-        browsers: ['PhantomJS']
+      e2e: configFile: 'karma.coffee'
       e2e_ci:
-        configFile: 'test/e2e.karma.coffee'
+        configFile: 'karma.coffee'
         singleRun: true
         browsers: ['PhantomJS']
     jshint:

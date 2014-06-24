@@ -10,8 +10,6 @@ module.exports = (karma) ->
     served: true
 
   karma.set
-    basePath: '..'
-
     frameworks: ['ng-scenario']
 
     preprocessors: '**/*.coffee': 'coffee'
