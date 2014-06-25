@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/akatov/angular-contenteditable.png?label=ready&title=Ready)](https://waffle.io/akatov/angular-contenteditable)
 # angular-contenteditable
 [![Build Status](https://img.shields.io/travis/akatov/angular-contenteditable.svg)](https://travis-ci.org/akatov/angular-contenteditable)
 [![Dependency Status](https://img.shields.io/gemnasium/akatov/angular-contenteditable.svg)](https://gemnasium.com/akatov/angular-contenteditable)
