@@ -21,6 +21,7 @@ angular.module('contenteditable', [])
         'noLineBreaks',
         'selectNonEditable',
         'moveCaretToEndOnChange',
+        'stripHtml',
       ], function(opt) {
         var o = attrs[opt]
         opts[opt] = o && o !== 'false'
@@ -41,6 +42,10 @@ angular.module('contenteditable', [])
               rerender = true
               html = html2
             }
+          }
+          if (opts.stripHtml) {
+            rerender = true
+            html = element.text()
           }
           ngModel.$setViewValue(html)
           if (rerender) {

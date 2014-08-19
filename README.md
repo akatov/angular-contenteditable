@@ -25,6 +25,7 @@ angular.module('myapp', ['contenteditable'])
   <span contenteditable="true"
         ng-model="model"
         strip-br="true"
+        strip-html="true"
         select-non-editable="true">
   </span>
 </div>
