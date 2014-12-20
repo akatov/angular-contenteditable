@@ -95,4 +95,4 @@ angular.module('contenteditable', [])
         })
       }
     }
-  }}])
+  }}]);
