@@ -48,7 +48,6 @@ angular.module('contenteditable', [])
           }
           ngModel.$setViewValue(html)
           if (rerender) {
-            console.log('!!rerender');
             ngModel.$render(true)
           }
           return html;
