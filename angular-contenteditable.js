@@ -85,10 +85,10 @@ angular.module('contenteditable', [])
           }
           var value = ngModel.$viewValue || '';
           if (!ignorePlaceholder && opts.placeholder) {
-           if (value === '') {
-             value = opts.placeholder;
-           }
-           element.toggleClass('placeholder', !value);
+            element.toggleClass('placeholder', value === '');
+            if (value === '') {
+              value = opts.placeholder;
+            }
           }
           element.html(value);
 
