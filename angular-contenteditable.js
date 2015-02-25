@@ -48,7 +48,8 @@ angular.module('contenteditable', [])
           }
           ngModel.$setViewValue(html)
           if (rerender) {
-            ngModel.$render()
+            console.log('!!rerender');
+            ngModel.$render(true)
           }
           return html;
         }
@@ -78,15 +79,19 @@ angular.module('contenteditable', [])
 
         // model -> view
         var oldRender = ngModel.$render
-        ngModel.$render = function() {
+        ngModel.$render = function(ignorePlaceholder) {
           var el, el2, range, sel
           if (!!oldRender) {
             oldRender()
           }
-          element.html(ngModel.$viewValue || opts.placeholder || '')
-          if (opts.placeholder) {
-            element.toggleClass('placeholder', !ngModel.$viewValue);
+          var value = ngModel.$viewValue || '';
+          if (!ignorePlaceholder && opts.placeholder) {
+           if (value === '') {
+             value = opts.placeholder;
+           }
+           element.toggleClass('placeholder', !value);
           }
+          element.html(value);
 
           if (opts.moveCaretToEndOnChange) {
             el = element[0]
