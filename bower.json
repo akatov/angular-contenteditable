@@ -13,9 +13,9 @@
     "test"
   ],
   "devDependencies": {
-    "angular": "*",
-    "angular-mocks": "~1.0.5",
-    "angular-scenario": "~1.0.5",
+    "angular": "~1.4.3",
+    "angular-mocks": "~1.4.3",
+    "angular-scenario": "~1.4.3",
     "expect": "~0.2.0",
     "jquery": "~2.0.2",
     "bootstrap-css": "~2.3.2",
