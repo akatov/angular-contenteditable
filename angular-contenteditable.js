@@ -21,7 +21,7 @@ angular.module('contenteditable', [])
         'noLineBreaks',
         'selectNonEditable',
         'moveCaretToEndOnChange',
-        'stripHtml',
+        'stripTags'
       ], function(opt) {
         var o = attrs[opt]
         opts[opt] = o && o !== 'false'
@@ -43,9 +43,9 @@ angular.module('contenteditable', [])
               html = html2
             }
           }
-          if (opts.stripHtml) {
+          if (opts.stripTags) {
             rerender = true
-            html = element.text()
+            html = html.replace(/<\S[^><]*>/g, '')
           }
           ngModel.$setViewValue(html)
           if (rerender) {
@@ -69,7 +69,12 @@ angular.module('contenteditable', [])
         if (!!oldRender) {
           oldRender()
         }
-        element.html(ngModel.$viewValue || '')
+        var html = ngModel.$viewValue || ''
+        if (opts.stripTags) {
+          html = html.replace(/<\S[^><]*>/g, '')
+        }
+
+        element.html(html)
         if (opts.moveCaretToEndOnChange) {
           el = element[0]
           range = document.createRange()
