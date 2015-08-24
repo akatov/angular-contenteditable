@@ -65,6 +65,11 @@ angular.module('contenteditable', [])
         if (!!oldRender) {
           oldRender()
         }
+
+        if (opts.unformattedText) {
+          ngModel.$viewValue = ngModel.$viewValue.replace(new RegExp('\n','g'), '<br>');
+        }
+
         element.html(ngModel.$viewValue || '')
         if (opts.moveCaretToEndOnChange) {
           el = element[0]
