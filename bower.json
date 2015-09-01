@@ -1,6 +1,6 @@
 {
   "name": "angular-contenteditable",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "main": "angular-contenteditable.js",
   "ignore": [
     ".*",
