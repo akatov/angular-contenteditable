@@ -21,6 +21,7 @@ angular.module('contenteditable', [])
         'noLineBreaks',
         'selectNonEditable',
         'moveCaretToEndOnChange',
+        'unformattedText'
       ], function(opt) {
         var o = attrs[opt]
         opts[opt] = o && o !== 'false'
@@ -30,7 +31,7 @@ angular.module('contenteditable', [])
       element.bind('input', function(e) {
         scope.$apply(function() {
           var html, html2, rerender
-          html = element.html()
+          html = opts.unformattedText ? element[0].innerText : element.html()
           rerender = false
           if (opts.stripBr) {
             html = html.replace(/<br>$/, '')
@@ -64,6 +65,11 @@ angular.module('contenteditable', [])
         if (!!oldRender) {
           oldRender()
         }
+
+        if (opts.unformattedText) {
+          ngModel.$viewValue = ngModel.$viewValue.replace(new RegExp('\n','g'), '<br>');
+        }
+
         element.html(ngModel.$viewValue || '')
         if (opts.moveCaretToEndOnChange) {
           el = element[0]

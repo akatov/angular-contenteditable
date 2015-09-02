@@ -22,3 +22,12 @@ describe 'module contenteditable', ->
         expect(element('#input').html()).toBe 'a <span style="color:red">red</span> b'
         expect(element('#input span').html()).toBe 'red'
         expect(element('#output').html()).toBe 'a &lt;span style="color:red"&gt;red&lt;/span&gt; b'
+
+      it 'setting the model with some pure text should dispaly <br> instead of newlines \\n', ->
+        input('unformatted').enter('#h1\n\n##h2\n###h3');
+        expect(element('#output-unformatted').html()).toBe '#h1<br><br>##h2<br>###h3'
+
+      it 'putting some unformatted text with <br>s in the html should replace them with newlines', ->
+
+        element('#output-unformatted').html('#h1<br><br>##h2<br>###h3');
+        expect(input('unformatted').val()).toBe('#h1\n\n##h2\n###h3');

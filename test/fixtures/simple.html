@@ -34,6 +34,11 @@ angular.bootstrap(document, ['simple'])
       <hr>
       <label>Contenteditable without Model</label>
       <div contenteditable>Edit me - I don't affect anything</div>
+      <hr>
+      <label>Model has pure text</label>
+      <br>
+      <textarea id="input-unformatted" ng-model="unformatted"></textarea>
+      <div id="output-unformatted" contenteditable="true" ng-model="unformatted" unformatted-text="true"></div>
     </div>
   </body>
 </html>
