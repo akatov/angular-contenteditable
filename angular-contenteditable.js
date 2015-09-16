@@ -65,6 +65,9 @@ angular.module('contenteditable', [])
           oldRender()
         }
         element.html(ngModel.$viewValue || '')
+				$timeout(function() {
+          element.blur();
+        }, 0);
         if (opts.moveCaretToEndOnChange) {
           el = element[0]
           range = document.createRange()
@@ -79,6 +82,18 @@ angular.module('contenteditable', [])
           sel.removeAllRanges()
           sel.addRange(range)
         }
+      }
+			if (attrs.placeholder) {
+        element.bind('focus', function (e) {
+          if (!ngModel.$viewValue) {
+            element.html('');
+          }
+        });
+        element.bind('blur', function (e) {
+          if (!ngModel.$viewValue) {
+            element.html(attrs.placeholder);
+          }
+        });
       }
       if (opts.selectNonEditable) {
         element.bind('click', function(e) {
