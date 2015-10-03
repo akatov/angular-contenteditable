@@ -34,7 +34,11 @@ angular.module('contenteditable', [])
           html = element.html()
           rerender = false
           if (opts.stripBr) {
-            html = html.replace(/<br>$/, '')
+            html2 = html.replace(/<br>$/, '')
+            if (html2 !== html) {
+              rerender = true
+              html = html2
+            }
           }
           if (opts.noLineBreaks) {
             html2 = html.replace(/<div>/g, '').replace(/<br>/g, '').replace(/<\/div>/g, '')
