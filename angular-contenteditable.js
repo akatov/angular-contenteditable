@@ -5,7 +5,7 @@
  */
 
 angular.module('contenteditable', [])
-  .directive('contenteditable', ['$timeout', function($timeout) { return {
+  .directive('contenteditable', ['$timeout', '$sanitize', function($timeout, $sanitize) { return {
     restrict: 'A',
     require: '?ngModel',
     link: function(scope, element, attrs, ngModel) {
@@ -64,7 +64,7 @@ angular.module('contenteditable', [])
         if (!!oldRender) {
           oldRender()
         }
-        element.html(ngModel.$viewValue || '')
+        element.html($sanitize(ngModel.$viewValue) || '')
         if (opts.moveCaretToEndOnChange) {
           el = element[0]
           range = document.createRange()
