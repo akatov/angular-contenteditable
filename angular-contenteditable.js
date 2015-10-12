@@ -24,7 +24,7 @@ angular.module('contenteditable', [])
         'stripTags'
       ], function(opt) {
         var o = attrs[opt]
-        opts[opt] = o && o !== 'false'
+        opts[opt] = attrs.hasOwnProperty(opt) && o !== 'false'
       })
 
       // view -> model
