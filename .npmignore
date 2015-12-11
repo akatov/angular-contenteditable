@@ -1,0 +1,7 @@
+.*
+README.md
+Gruntfile.coffee
+components
+node_modules
+src
+test

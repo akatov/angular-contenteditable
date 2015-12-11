@@ -1,17 +1,17 @@
 {
   "name": "angular-contenteditable",
-  "version": "0.3.8",
+  "version": "0.0.1",
   "description": "angular model for the 'contenteditable' html attribute",
   "repository": {
     "type": "git",
-    "url": "https://github.com/akatov/angular-contenteditable.git"
+    "url": "https://github.com/okhomenko/angular-contenteditable.git"
   },
   "main": "angular-contenteditable.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "install": "bower install",
+    "install-bower": "bower install",
     "test": "grunt test"
   },
   "repository": "",
