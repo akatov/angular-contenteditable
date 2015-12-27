@@ -21,7 +21,8 @@ angular.module('contenteditable', [])
         'noLineBreaks',
         'selectNonEditable',
         'moveCaretToEndOnChange',
-        'stripTags'
+        'stripTags',
+        'numbersOnly'
       ], function(opt) {
         var o = attrs[opt]
         opts[opt] = o && o !== 'false'
@@ -46,6 +47,10 @@ angular.module('contenteditable', [])
           if (opts.stripTags) {
             rerender = true
             html = html.replace(/<\S[^><]*>/g, '')
+          }
+          if( opts.numbersOnly ){
+            rerender = true;
+            html = html.replace(/\D/g,'');
           }
           ngModel.$setViewValue(html)
           if (rerender) {
