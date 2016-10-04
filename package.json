@@ -1,6 +1,6 @@
 {
   "name": "angular-contenteditable",
-  "version": "0.0.2",
+  "version": "0.3.9",
   "description": "angular model for the 'contenteditable' html attribute",
   "repository": {
     "type": "git",
