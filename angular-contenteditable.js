@@ -28,7 +28,7 @@ angular.module('contenteditable', [])
       })
 
       // view -> model
-      element.bind('input', function(e) {
+      element.bind('blur keyup change', function(e) {
         scope.$apply(function() {
           var html, html2, rerender
           html = element.html()
@@ -51,14 +51,14 @@ angular.module('contenteditable', [])
           if (rerender) {
             ngModel.$render()
           }
-          if (html === '') {
-            // the cursor disappears if the contents is empty
-            // so we need to refocus
-            $timeout(function(){
-              element[0].blur()
-              element[0].focus()
-            })
-          }
+          //if (html === '') {
+          //  // the cursor disappears if the contents is empty
+          //  // so we need to refocus
+          //  $timeout(function(){
+          //    element[0].blur()
+          //    element[0].focus()
+          //  })
+          //}
         })
       })
 
