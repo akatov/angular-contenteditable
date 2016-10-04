@@ -4,7 +4,7 @@
   "description": "angular model for the 'contenteditable' html attribute",
   "repository": {
     "type": "git",
-    "url": "https://github.com/okhomenko/angular-contenteditable.git"
+    "url": "https://github.com/akatov/angular-contenteditable.git"
   },
   "main": "index.js",
   "directories": {
