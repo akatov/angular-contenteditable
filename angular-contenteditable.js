@@ -3,6 +3,7 @@
  * @see http://docs.angularjs.org/api/ng.directive:ngModel.NgModelController
  * @see https://github.com/angular/angular.js/issues/528#issuecomment-7573166
  */
+(function(window, angular, undefined) {'use strict';
 
 angular.module('contenteditable', [])
   .directive('contenteditable', ['$timeout', function($timeout) { return {
@@ -106,3 +107,5 @@ angular.module('contenteditable', [])
       }
     }
   }}]);
+
+}(window, window.angular));
