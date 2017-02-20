@@ -29,7 +29,7 @@ angular.module('contenteditable', [])
 
       // view -> model
       element.bind('input', function(e) {
-        scope.$apply(function() {
+        scope.$evalAsync(function() {
           var html, html2, rerender
           html = element.html()
           rerender = false
